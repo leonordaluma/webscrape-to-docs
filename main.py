@@ -1,3 +1,4 @@
+from pprint import pprint
 import requests
 from bs4 import BeautifulSoup
 from docx import Document
@@ -28,5 +29,18 @@ for a in all:
             print(text)
             subheading2 = document.add_heading(text, 2)
             subheading2.paragraph_format.left_indent = Inches(0.3)
+    else:
+        if a.name == "h3":
+            print(f"Subsection: {a.getText()}")
+            subsection = document.add_heading(a.getText(), 3)
+            subsection.paragraph_format.left_indent = Inches(0.5)
+        elif a.name == "h4":
+            print(f"Video Title: {a.getText()}")
+            video_title = document.add_heading(a.getText(), 4)
+            video_title.paragraph_format.left_indent = Inches(0.9)
+
+
+        
+        
     
 document.save('free-a-plus-training.docx')
